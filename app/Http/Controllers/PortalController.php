@@ -31,7 +31,8 @@ class PortalController extends Controller
     }
     public function posts()
     {
-        $data['posts'] = Posts::where('user_id', Auth::id())->paginate(2);
+        $data['posts'] = Posts::where('user_id', Auth::id())->paginate(8);
+
         return view('portal.posts', $data);
     }
     public function posts_requests()

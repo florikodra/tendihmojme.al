@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreatePostRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('post_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->text('title')->nullable()->default('title');
+            $table->string('title')->nullable()->default('title');
             $table->longText('description')->nullable()->default('description');
-            $table->timestamp('expire_at')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('post_id')->nullable()->constrained();
+            $table->boolean('confirmed')->nullable()->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('post_requests');
     }
 }

@@ -13,6 +13,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -49,12 +50,17 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-primary mr-3 rounded-pill pr-5 pl-5" href="{{ route('home') }}">{{ __('Home') }}</a>
+                            <a class="nav-link btn btn-outline-primary mr-3 rounded-pill pr-5 pl-5" href="{{ route('home') }}"><i class="fas fa-home"></i> {{ __('Home') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-primary mr-4 ml-2 rounded-pill pr-5 pl-5" href="{{ route('about') }}">{{ __('About') }}</a>
+                            <a class="nav-link btn btn-outline-primary mr-4 ml-2 rounded-pill pr-5 pl-5" href="{{ route('posts.index') }}"><i class="fas fa-box"></i> {{ __('Ndihmat e fundit') }}</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-primary mr-4 ml-2 rounded-pill pr-5 pl-5" href="{{ route('about') }}"><i class="fas fa-info"></i> {{ __('About') }}</a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

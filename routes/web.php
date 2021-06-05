@@ -22,8 +22,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\PostsController::class, 'home'])->name('home');
 Route::get('/about', [App\Http\Controllers\PostsController::class, 'about'])->name('about');
+Route::resource('/posts', App\Http\Controllers\PostsController::class);
+Route::get('/posts/rm/{id}', [App\Http\Controllers\PostsController::class, 'delete'])->name('posts.delete');
+
 
 Route::group(['prefix' => '/portal'], function () {
 

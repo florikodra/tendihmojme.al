@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -14,12 +15,18 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['posts'] = Posts::paginate(4);
+        return view('posts',$data);
     }
 
     public function about()
     {
         return view('about');
+    }
+
+    public function home()
+    {
+        return view('home');
     }
 
     /**
@@ -40,7 +47,18 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->middleware('auth');
+
+        $validated = $request->validate([
+            'title' =>  'required',
+            'description' => 'required',
+            'expire_at' =>  'required',
+        ]);
+        $validated['user_id'] = Auth::id();
+
+        Posts::create($request->all());
+
+        return back();
     }
 
     /**
@@ -49,9 +67,9 @@ class PostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function show(Posts $posts)
+    public function show(Posts $post)
     {
-        //
+        return view('post-detail',compact('post'));
     }
 
     /**
@@ -85,6 +103,14 @@ class PostsController extends Controller
      */
     public function destroy(Posts $posts)
     {
-        //
+        $this->middleware('auth');
+        $posts->delete();
+        return back();
+    }
+
+    public function delete($id)
+    {
+        Posts::destroy($id);
+        return back();
     }
 }
