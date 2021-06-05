@@ -2,7 +2,10 @@
 
 @section('content')
 
+<img src="/img/banner.jpg" alt="Banner" class="banner">
+
 <div class="container">
+    
     <div class="row">
 
     </div>

@@ -25,10 +25,14 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\PostsController::class, 'about'])->name('about');
 
-
 Route::group(['prefix' => '/portal'], function () {
 
     Route::get('/dashboard', [App\Http\Controllers\PortalController::class, 'dashboard'])->name('dashboard');
     Route::get('/posts', [App\Http\Controllers\PortalController::class, 'posts'])->name('posts');
+    Route::get('/posts-requests', [App\Http\Controllers\PortalController::class, 'posts_requests'])->name('posts-requests');
 
+});
+
+Route::get('/update-db', function () {
+Artisan::call('migrate:fresh', ["--force" => true ]);
 });

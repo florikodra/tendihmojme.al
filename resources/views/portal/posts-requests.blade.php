@@ -22,22 +22,29 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @forelse ($posts as $post)
                           <tr>
                             <th scope="row">1</th>
-                            <td></td>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ $post->description }}</td>
-                            <td></td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
                           </tr>
-                          @empty
                           <tr>
-                            <th scope="row" colspan="5">Nuk u gjenden te dhena!</th>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Otto</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
                           </tr>
-                          @endforelse
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>Otto</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
                         </tbody>
                       </table>
-                      {{ $posts->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
