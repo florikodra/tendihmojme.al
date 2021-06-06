@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -15,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $data['posts'] = Posts::paginate(4);
+        $data['posts'] = Posts::latest()->paginate(10);
         return view('posts',$data);
     }
 
@@ -56,7 +56,7 @@ class PostsController extends Controller
         ]);
         $validated['user_id'] = Auth::id();
 
-        Posts::create($request->all());
+        Posts::create($validated);
 
         return back();
     }
@@ -69,7 +69,9 @@ class PostsController extends Controller
      */
     public function show(Posts $post)
     {
-        return view('post-detail',compact('post'));
+        $data['post'] = $post;
+        $data['latestPosts'] = Posts::orderBy('created_at', 'desc')->take(3)->get();
+        return view('post-detail',$data);
     }
 
     /**

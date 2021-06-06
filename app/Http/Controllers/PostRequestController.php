@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostRequestController extends Controller
 {
@@ -35,7 +37,19 @@ class PostRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->middleware('auth');
+
+        var_dump(Auth::id());
+
+
+        $validated = $request->validate([
+            'description' => 'required',
+        ]);
+        $validated['user_id'] = Auth::id();
+        $validated['post_id'] = $request->post_id;
+
+        PostRequest::create($validated);
+        return back();
     }
 
     /**

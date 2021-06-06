@@ -40,7 +40,7 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->description }}</td>
                                 <td>{{ $post->expire_at }}</td>
-                                <td><button class="btn btn-success"><i class="fas fa-eye"></i></button> <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button> <a href="{{ route('posts.delete', $post->id) }}" class="btn btn-danger" onclick="return confirm('Jeni i sigurte qe do e fshini kete post?');"><i class="fas fa-trash"></i></a></td>
+                                <td><a href="{{ route("posts.show", $post->id)}}" class="btn btn-success"><i class="fas fa-eye"></i></a> <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button> <a href="{{ route('posts.delete', $post->id) }}" class="btn btn-danger" onclick="return confirm('Jeni i sigurte qe do e fshini kete post?');"><i class="fas fa-trash"></i></a></td>
                             </tr>
                             @empty
                             <tr>

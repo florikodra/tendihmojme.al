@@ -25,6 +25,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\PostsController::class, 'home'])->name('home');
 Route::get('/about', [App\Http\Controllers\PostsController::class, 'about'])->name('about');
 Route::resource('/posts', App\Http\Controllers\PostsController::class);
+Route::resource('/post/request', App\Http\Controllers\PostRequestController::class);
+Route::post('/post/request/{id}', [App\Http\Controllers\PostRequestController::class, 'store'])->name('postreq');
 Route::get('/posts/rm/{id}', [App\Http\Controllers\PostsController::class, 'delete'])->name('posts.delete');
 
 

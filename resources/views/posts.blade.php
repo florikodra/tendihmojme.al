@@ -17,7 +17,7 @@
             <div class="row justify-content-between">
 
                 <a href="{{route("posts.show", $post->id)}}" class="btn btn-primary col-sm-4"><i class="fas fa-eye"></i> Shiko</a>
-                <a href="#" class="btn btn-success col-sm-5"><i class="fas fa-check"></i> Rezervo</a>
+                <a href="{{route("posts.show", $post->id)}}/?request=true#reserve" class="btn btn-success col-sm-5"><i class="fas fa-check"></i> Rezervo</a>
             </div>
 
 
